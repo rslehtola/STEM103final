@@ -3,6 +3,10 @@
 # Date: 06/02/25
 # Class: STEM 103 Spring
 
+import random
+import csv
+
+
 # Welcome the user and prompt them for their name also store it as a variable
 # Greet the user by their name
 # Load questions from CSV
