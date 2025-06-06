@@ -22,7 +22,7 @@ def load_questions(file_path):
             reader = csv.reader(file)
             data = list(reader)
            
-        if not data: # file not found display for CSV
+        if not data: # File not found display for CSV
             print("File not found")
             return None
     
