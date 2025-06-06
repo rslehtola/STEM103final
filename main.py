@@ -1,7 +1,7 @@
 # Project: Misinformation Station Trivia
 # Coder: Rory Lehtola
 # Date: 06/02/25
-
+# Class: STEM 103 Spring
 
 # Welcome the user and prompt them for their name also store it as a variable
 # Greet the user by their name
