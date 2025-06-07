@@ -6,93 +6,91 @@
 
 # Function 1: Welcome the user and prompt them for their name also store it as a variable
 def welcome_user():
-    user_name = input("Welcome to the Misinformation Trivia! What's your name? ")
+    user_name = input("Welcome to the Misinformation Trivia! What's your name? ") # Ask for the users name
     print(f"Greetings {user_name}! Let's play a game!") # Greet the user by their name
-    return user_name
-
-welcome_user() 
+    return user_name # Return users name to be used later
 
 # Imports
-import random
-import csv
+import random # To shuffle questions randomly
+import csv # To read questions from the CSV file
 
 # Function 2: Load questions from CSV
 def load_questions(file_path):
     try:
-        with open(file_path, mode='r') as file:
-            reader = csv.reader(file)
-            data = list(reader)
+        with open(file_path, mode='r') as file: # Open the file to read mode
+            reader = csv.reader(file) # Create a CSV reader object
+            data = list(reader) # Convert the CSV reader to a list
            
-        if not data: # File is empty display for CSV
-            print("Error!!! File is empty")
-            return None
+        if not data: # Check if the file is empty
+            print("Error!!! File is empty") # Inform user of empty file
+            return None # Return none so the game doesn't continue
 
-        header = data[0] # Accessing data from CSV
-        questions = data[1:]
+        header = data[0] # Store the header row
+        questions = data[1:] # Store all the rows except the header as question data
         
-        if not questions:
+        if not questions: # If there as no actual questions
             print("Error!!! No questions found") # Questions not found display
-            return None
+            return None # Stop game from continuing
 
-        random.shuffle(questions) # Implement random question shuffle
-        return questions
+        random.shuffle(questions) # Random question shuffle
+        return questions # Return the loaded and shuffled questions
 
-    except FileNotFoundError:
+    except FileNotFoundError: # Handle the case where the file is not found
         print(f"Error!!! Could not find file '{file_path}'") # File not found error display
-        return None
+        return None # Stop crashes
 
 # Function 3: Prompt the user to answer a question
 def ask_question(q):
-    question = q[0] # Variables
-    choices = q[1:5]
-    answer = q[5]
+    question = q[0] # The questions text
+    choices = q[1:5] # The four choices
+    answer = q[5] # The correct answer
 
 # Ask a question
-    print("\n" + question)
-    for i, choice in enumerate(choices, 1):
-        print(f"{i}.{choice}")
+    print("\n" + question) # Print the question
+    for i, choice in enumerate(choices, 1): # Enumerate answer coices 1-4
+        print(f"{i}.{choice}") # Display the choice with numbers
     
-    is_continued = True
-    while is_continued:
+    is_continued = True # Control variable for input loop
+    while is_continued: # Loop until valid input is received
         try:
-            user_input = int(input("Your answer (1-4): ")) # Prompt for user input
-            if 1 <= user_input <= 4:
-                is_continued = False
+            user_input = int(input("Your answer (1-4): ")) # Prompt user for answer
+            if 1 <= user_input <= 4: # Validate number range
+                is_continued = False # Exit loop on valid input
             else:
                 print("Please enter a number between 1 and 4! ") # Ask user to input a # between 1-4
-        except ValueError:
+        except ValueError: # Catch non-integer input
                 print("That's not a valid number! Please try 1, 2, 3, or 4. ") # Error message for incorrect input
             
     if choices[user_input-1].strip().lower() == answer.strip().lower():
         print("You got that totally right!") # Display for correct answer
-        return True
+        return True # Return True for score tracking
     else:
         print(f"Sorry, but that's incorrect. The correct answer is: {answer}") # Display for incorrect answer
-        return False
+        return False # Return False for score tracking
 
 # Function 4: Keeps track of score
 def run_quiz(questions):
-    score = 0
-    for q in questions:
-        if ask_question(q):
-            score += 1
-            input("When you're ready, hit enter to continue: ") # Hit enter to continue to next question
-            return score
+    score = 0 # Initalize score to 0
+    for q in questions: # Loop through each question
+        if ask_question(q): # Call ask_questions and check if the answer is correct
+            score += 1 # Add 1 to score if answer correct
+            input("When you're ready, hit enter to continue: ") # Hit enter to continue to next question display
+    return score # Return final score at the end
         
-# Function 5: Display final score
+# Function 5: Display final score to user
 def print_final_score(score, total, user_name):
     print(f"Good game, {user_name}. Your final score: {score}/{total}") # Good game with users name and final score display
 
-# Function 6: Runs trivia game or main code
-def main(): # Variables
-    input_file = 'trivia_questions.csv'
-    user_name = welcome_user()
-    questions = load_questions(input_file)
+# Function 6: Runs the full trivia game
+def main():
+    input_file = 'trivia_questions.csv' # File name for questions
+    user_name = welcome_user() # Call the function to welcome user and get name
+    questions = load_questions(input_file) # Load questions from CSV
 
-    if questions: # Display score
-        score = run_quiz(questions)
-        print_final_score(score, len(questions), user_name)
+    if questions: # If questions were loaded correctly
+        score = run_quiz(questions) # Run the quiz and get final score
+        print_final_score(score, len(questions), user_name) # Print final score and name
 
-# Correct syntax to run program
-if__name__ == "__main__":
-main()
+# Run the main function only if the script is enabled
+if __name__ == "__main__":
+    main() # Call the main function to start the most awesome game ever
