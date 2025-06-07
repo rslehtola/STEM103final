@@ -6,7 +6,7 @@
 
 # Welcome the user and prompt them for their name also store it as a variable
 def welcome_user():
-    user_name=input("Welcome to the Misinformation Trivia! What's your name? ")
+    user_name = input("Welcome to the Misinformation Trivia! What's your name? ")
     print(f"Greetings {user_name}! Let's play a game!") # Greet the user by their name
     return user_name
 
@@ -26,20 +26,18 @@ def load_questions(file_path):
         if not data: # File not found display for CSV
             print("Error!!! File not found")
             return None
-    
-        header = data[0] # Accessing data from CSV
-        questions = data[1:]
+header = data[0] # Accessing data from CSV
+questions = data[1:]
         
-        if not questions:
-            print("Error!!! No questions found") # Questions not found display
-            return None
+if not questions:
+    print("Error!!! No questions found") # Questions not found display
+    return None
+random.shuffle(questions) # Implement random question shuffle
+    #return questions
 
-        random.shuffle(questions) # Implement random question shuffle
-        return questions
-    
-    except FileNotFoundError:
-        print(f"Error!!! Could not find file '{file_path}'") # File not found error display
-        return None
+except FileNotFoundError:
+print(f"Error!!! Could not find file '{file_path}'") # File not found error display
+    #return None
 
 # Prompt the user to answer a question
 def ask_question(q):
@@ -55,22 +53,32 @@ def ask_question(q):
     is_continued = True
     while is_continued:
         try:
-            user_input=int(input("Your answer (1-4): ")) # Prompt for user input
-            if 1<=user_input<=4:
-                is_continued=False
+            user_input = int(input("Your answer (1-4): ")) # Prompt for user input
+            if 1 <= user_input <= 4:
+                is_continued = False
             else:
                 print("Please enter a number between 1 and 4! ") # Ask user to input a # between 1-4
         except ValueError:
                 print("That's not a valid number! Please try 1, 2, 3, or 4. ") # Error message for incorrect input
             
-if choices[user_input-1].strip().lower()==answer.strip().lower():
-    print("You got that totally right!") # Display for correct answer
-    return True
+    if choices[user_input-1].strip().lower() == answer.strip().lower():
+        print("You got that totally right!") # Display for correct answer
+        return True
+    else:
+        print(f"Sorry, but that's incorrect. The correct answer is: {answer}") # Display for incorrect answer
+        return False
 
-else:
-    print(f"Sorry, but that's incorrect. The correct answer is: {answer}") # Display for incorrect answer
-    return False
-
+def run_quiz(questions): # Keep track of the score
+    score = 0
+    for q in questions:
+        if ask_question(q):
+            score += 1
+            input("When you're ready, hit enter to continue: ") # Hit enter to continue to next question
+            return score
+        
+# Function 5: Display final score
+def print_final_score(score, total, user_name):
+    
 
 
 
