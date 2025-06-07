@@ -23,21 +23,23 @@ def load_questions(file_path):
             reader = csv.reader(file)
             data = list(reader)
            
-        if not data: # File not found display for CSV
-            print("Error!!! File not found")
+        if not data: # File is empty display for CSV
+            print("Error!!! File is empty")
             return None
-header = data[0] # Accessing data from CSV
-questions = data[1:]
-        
-if not questions:
-    print("Error!!! No questions found") # Questions not found display
-    return None
-random.shuffle(questions) # Implement random question shuffle
-    #return questions
 
-except FileNotFoundError:
-print(f"Error!!! Could not find file '{file_path}'") # File not found error display
-    #return None
+        header = data[0] # Accessing data from CSV
+        questions = data[1:]
+        
+        if not questions:
+            print("Error!!! No questions found") # Questions not found display
+            return None
+
+        random.shuffle(questions) # Implement random question shuffle
+        return questions
+
+    except FileNotFoundError:
+        print(f"Error!!! Could not find file '{file_path}'") # File not found error display
+        return None
 
 # Function 3: Prompt the user to answer a question
 def ask_question(q):
@@ -83,13 +85,14 @@ def print_final_score(score, total, user_name):
 
 # Function 6: Runs trivia game or main code
 def main(): # Variables
-    input_file = 'triva_questions.csv'
+    input_file = 'trivia_questions.csv'
     user_name = welcome_user()
     questions = load_questions(input_file)
 
-if questions: # Display score
-    score = run_quiz(questions)
-    print_final_score(score, len(questions), user_name)
+    if questions: # Display score
+        score = run_quiz(questions)
+        print_final_score(score, len(questions), user_name)
 
+# Correct syntax to run program
 if__name__ == "__main__":
 main()
