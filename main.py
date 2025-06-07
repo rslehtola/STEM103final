@@ -53,7 +53,7 @@ def ask_question(q):
     is_continued = True # Control variable for input loop
     while is_continued: # Loop until valid input is received
         try:
-            user_input = int(input("Your answer was: ")) # Prompt user for answer
+            user_input = int(input("Your answer: ")) # Prompt user for answer
             if 1 <= user_input <= 4: # Validate number range
                 is_continued = False # Exit loop on valid input
             else:
@@ -74,7 +74,7 @@ def run_quiz(questions):
     for q in questions: # Loop through each question
         if ask_question(q): # Call ask_questions and check if the answer is correct
             score += 1 # Add 1 to score if answer correct
-            input("When you're ready, hit enter to continue: ") # Hit enter to continue to next question display
+        input("When you're ready, hit enter to continue: ") # Hit enter to continue to next question display
     return score # Return final score at the end
         
 # Function 5: Display final score to user
