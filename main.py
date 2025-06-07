@@ -4,7 +4,7 @@
 # Class: STEM 103 Spring
 
 
-# Welcome the user and prompt them for their name also store it as a variable
+# Function 1: Welcome the user and prompt them for their name also store it as a variable
 def welcome_user():
     user_name = input("Welcome to the Misinformation Trivia! What's your name? ")
     print(f"Greetings {user_name}! Let's play a game!") # Greet the user by their name
@@ -16,7 +16,7 @@ welcome_user()
 import random
 import csv
 
-# Load questions from CSV
+# Function 2: Load questions from CSV
 def load_questions(file_path):
     try:
         with open(file_path, mode='r') as file:
@@ -39,9 +39,9 @@ except FileNotFoundError:
 print(f"Error!!! Could not find file '{file_path}'") # File not found error display
     #return None
 
-# Prompt the user to answer a question
+# Function 3: Prompt the user to answer a question
 def ask_question(q):
-    question = q[0]
+    question = q[0] # Variables
     choices = q[1:5]
     answer = q[5]
 
@@ -68,7 +68,8 @@ def ask_question(q):
         print(f"Sorry, but that's incorrect. The correct answer is: {answer}") # Display for incorrect answer
         return False
 
-def run_quiz(questions): # Keep track of the score
+# Function 4: Keeps track of score
+def run_quiz(questions):
     score = 0
     for q in questions:
         if ask_question(q):
@@ -78,14 +79,17 @@ def run_quiz(questions): # Keep track of the score
         
 # Function 5: Display final score
 def print_final_score(score, total, user_name):
-    
+    print(f"Good game, {user_name}. Your final score: {score}/{total}") # Good game with users name and final score display
 
+# Function 6: Runs trivia game or main code
+def main(): # Variables
+    input_file = 'triva_questions.csv'
+    user_name = welcome_user()
+    questions = load_questions(input_file)
 
+if questions: # Display score
+    score = run_quiz(questions)
+    print_final_score(score, len(questions), user_name)
 
-# Keep track of the score
-
-
-# Press enter to contiue prompt
-
-
-# Display users name with the final score
+if__name__ == "__main__":
+main()
