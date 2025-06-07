@@ -54,7 +54,7 @@ def ask_question(q):
     while is_continued: # Loop until valid input is received
         try:
             user_input = int(input("Your answer: ")) # Prompt user for answer
-            if 1 <= user_input >= 4: # Validate number range
+            if 1 <= user_input <= 4: # Validate number range
                 is_continued = False # Exit loop on valid input
             else:
                 print("Please enter a number between 1 and 4! ") # Ask user to input a # between 1-4
