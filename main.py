@@ -61,7 +61,7 @@ def ask_question(q):
         except ValueError: # Catch non-integer input
                 print("That's not a valid number! Please try 1, 2, 3, or 4. ") # Error message for incorrect input
             
-    if choices[user_input-1].strip().lower() == answer.strip().lower():
+    if user_input == int(answer.strip()):
         print("You got that totally right!") # Display for correct answer
         return True # Return True for score tracking
     else:
