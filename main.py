@@ -53,7 +53,7 @@ def ask_question(q):
     is_continued = True # Control variable for input loop
     while is_continued: # Loop until valid input is received
         try:
-            user_input = int(input("Your answer: ")) # Prompt user for answer
+            user_input = int(input("Your answer was: ")) # Prompt user for answer
             if 1 <= user_input <= 4: # Validate number range
                 is_continued = False # Exit loop on valid input
             else:
