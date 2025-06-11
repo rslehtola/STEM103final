@@ -20,7 +20,7 @@
 # questions with every symbol, character, letter, number and it won't accept any answer other 
 # than 1, 2, 3 or 4.
 
-# Function 1: Welcome the user and prompt them for their name also store it as a variable
+# Function 1: Welcome the user and prompt them for their name also stores it as a variable
 def welcome_user():
     user_name = input("Welcome to Misinformation Trivia! What's your name? ") # Ask for the users name
     print(f"Greetings {user_name}! Let's play a game!") # Greet the user by their name
