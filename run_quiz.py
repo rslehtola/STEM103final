@@ -1,3 +1,4 @@
+# Imports
 from ask_question import ask_question
 
 # Function 4: Keeps track of score
