@@ -1,7 +1,10 @@
 # Misinformation Trivia
 Coder: Rory Lehtola
+
 Date: 06/10/25
+
 Class: STEM 103 Spring
+
 Final Project: Misinformation Trivia game
 
 # Program Description
