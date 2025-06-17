@@ -1,8 +1,8 @@
 # Imports
-from welcome_user import welcome_user
-from load_questions import load_questions
-from run_quiz import run_quiz
-from print_final_score import print_final_score
+from functions import welcome_user
+from functions import load_questions
+from functions import run_quiz
+from functions import print_final_score
 
 # Function 6: Runs the full trivia game
 def main():
